@@ -1,4 +1,7 @@
 # marc-data
+
+Note: Upgraded to Python 3 in 02/2019
+
 Scripts for manipulating MARC-related data
 
 #### [extractCompleteNamesSubjectsFromCSV](extractCompleteNamesSubjectsFromCSV.py)
