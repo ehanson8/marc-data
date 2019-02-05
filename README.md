@@ -1,6 +1,6 @@
 # marc-data
 
-Note: Upgraded to Python 3 in 02/2019
+**Note**: Upgraded to Python 3 in 02/2019. The Python 2.x version can be downloaded [here](https://github.com/ehanson8/marc-data/releases)
 
 Scripts for manipulating MARC-related data
 
