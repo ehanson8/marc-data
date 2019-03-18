@@ -2,7 +2,9 @@ import json
 import csv
 import time
 
-def extractMarcField (tag):
+
+def extractMarcField(tag):
+    """Extract specified MARC field."""
     dataFields = record['record']['datafield']
     tagData = ''
     for dataField in dataFields:
@@ -22,10 +24,12 @@ def extractMarcField (tag):
             else:
                 for subfield in value:
                     tagData = tagData + subfield + ' '
-            if bibnum in missedBibs:
-                f.writerow([bibnum]+[tag]+[indicator1]+[indicator2]+[tagData])
+            f.writerow([bibnum] + [tag] + [indicator1] + [indicator2]
+                       + [tagData])
 
-def extractMarcFieldStartsWith (digit):
+
+def extractMarcFieldStartsWith(digit):
+    """Extract any MARC field that begins with the specified digit."""
     dataFields = record['record']['datafield']
     for dataField in dataFields:
         if dataField['tag'] == '910':
@@ -48,16 +52,17 @@ def extractMarcFieldStartsWith (digit):
                 for subfield in value:
                     if isinstance(subfield, basestring):
                         tagData = tagData + subfield + '--'
-            if bibnum in missedBibs:
-                f.writerow([bibnum]+[tagNumber]+[indicator1]+[indicator2]+[tagData])
+            f.writerow([bibnum] + [tagNumber] + [indicator1] + [indicator2]
+                       + [tagData])
+
 
 startTime = time.time()
 file = input('Enter file name')
 
 records = json.load(open(file))
 
-f=csv.writer(open('marcFields.csv', 'w'))
-f.writerow(['bibnum']+['tag']+['indicator1']+['indicator2']+['value'])
+f = csv.writer(open('marcFields.csv', 'w'))
+f.writerow(['bibnum'] + ['tag'] + ['indicator1'] + ['indicator2'] + ['value'])
 
 for record in records:
     extractMarcFieldStartsWith('1')
